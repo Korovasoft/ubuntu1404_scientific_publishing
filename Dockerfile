@@ -1,7 +1,18 @@
-FROM shippableimages/ubuntu1404_python:latest
+FROM ubuntu:14.04
 
-RUN apt-get update && apt-get install -y texlive-full
-RUN add-apt-repository -y ppa:george-edison55/cmake-3.x && apt-get update && apt-get install -y cmake
-RUN apt-get install -y python3-pip && pip3 install colorama
-RUN apt-get install -y llvm clang-3.5
-RUN apt-get --no-install-recommends install -y doxygen
+# Ubuntu Installs:
+RUN apt-add-repository -y ppa:george-edison55/cmake-3.x && apt-get update && apt-get install -y --no-install-recommends \
+	texlive-full \
+	python3 \
+	python3-pip \
+	llvm \
+	clang-3.5 \
+	doxygen \
+	cmake \
+	curl \
+	poppler-utils \
+	imagemagick \
+	&& rm -rf /var/lib/apt/lists/*
+
+# Python installs:
+RUN pip3 install colorama Pygments
