@@ -1,7 +1,8 @@
 FROM ubuntu:14.04
 
 # Ubuntu Installs:
-RUN apt-add-repository -y ppa:george-edison55/cmake-3.x && apt-get update && apt-get install -y --no-install-recommends \
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common && \
+	add-apt-repository -y ppa:george-edison55/cmake-3.x && apt-get update && apt-get install -y --no-install-recommends \
 	texlive-full \
 	python3 \
 	python3-pip \
